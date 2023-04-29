@@ -645,6 +645,7 @@ color: white;
       width: 100%;
       text-align: left;
    }
+
    .shortened-result-template p{
       text-align: left;
       font-size: 18px;
@@ -653,12 +654,14 @@ color: white;
    .shortened-result-template .right-link .short-link{
       width: 100%;
    }
-   .shortened-result-template .right-link button{
+
+   #shortened-result button{
       width: 100%;
       font-size: 18px;
       font-weight: 500;
       border-radius: 5px;
    }
+   
    .advanced-statistic{
       width: 80%;
       margin: 0;

@@ -1,25 +1,40 @@
-getLinkShortner();
+let input = document.querySelector('.input');
 async function getLinkShortner(){
-    url = 'facebook.com'
-    const res0 = await fetch(`https://api.shrtco.de/v2/shorten?url=${url}`);
-    const res1 = await fetch(`https://api.shrtco.de/v2/shorten?url=${url}`);
-    const res2 = await fetch(`https://api.shrtco.de/v2/shorten?url=${url}`);
-    let res = await Promise.all([res0, res1, res2]);
-    const data = await res.json();
+    
+    let url = input.value;
+    const res = await fetch(`https://api.shrtco.de/v2/shorten?url=${url}`);
+    const data = await res.json();    
     let jsonShortlink = data.result.short_link;
-    console.log(jsonShortlink[0]);
-    return jsonShortlink;
+
+    
+    let shortenedResultTemplate = document.createElement('div');
+    shortenedResultTemplate.setAttribute('class', 'shortened-result-template');    
+    template.appendChild(shortenedResultTemplate);
+
+    let fullLink = document.createElement('p');
+    fullLink.innerHTML = `https://${url}`;
+    fullLink.classList.add('full-link');
+    shortenedResultTemplate.appendChild(fullLink);
+
+    let rightLink = document.createElement('div');
+    rightLink.setAttribute('class', 'right-link');    
+    shortenedResultTemplate.appendChild(rightLink);
+
+    let shortLink = document.createElement('p'); 
+    shortLink.innerHTML = jsonShortlink; 
+    shortLink.classList.add('short-link');
+    rightLink.appendChild(shortLink);
+
+    let button = document.createElement('button');
+    button.setAttribute('type', 'button');
+    button.innerHTML = 'copy';
+    rightLink.appendChild(button);
 };
 
-/* getLinkShortner().then(d => {
-    console.log(d)
-    console.log(d)
-    });
-console.log(getLinkShortner());
- */
+
 let shortenIt = document.querySelector('.shorten-it');
 shortenIt.addEventListener("click", () => {
-    showForm();
+    getLinkShortner();
 })
 
 let bars = document.querySelector('.bars');
@@ -35,14 +50,13 @@ showNav = ( ) =>{
     nav.classList.remove('hide');
 }
     
+const template = document.getElementById("shortened-result");
+
 if("content" in document.createElement("template")) {
     function showForm() {
         // Selecting the elements
         const template = document.getElementById("shortened-result");
-        const clone = template.content.cloneNode(true);
-        document.querySelector('.shorten-wrapper').appendChild(clone);
     }
 } else {
     alert("Your browser does not support template element!");
 }
-
