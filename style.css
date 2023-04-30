@@ -19,7 +19,7 @@ header{
 header .bars{
    visibility: hidden;
    position: absolute;
-   right: 30px;
+   right: 5%;
 }
 header .bars:hover{
    background-color: rgba(94, 91, 91, 0.308);
@@ -106,7 +106,7 @@ button {
    margin-top: 50px;
    width: 100%;
    min-height: 500px;
-   margin-bottom: 20px;
+   
 }
 .first{
    display: flex;
@@ -450,7 +450,16 @@ color: white;
    }
  }
 
+ @media(max-width: 1280px){
+   h1{
+      font-size: 55px;
+   }
+ }
  @media(max-width: 991px){
+   .first-section{
+       margin-bottom: 0px;
+   }
+
    h1{
       font-size: 50px;
    }
@@ -509,6 +518,10 @@ color: white;
    header{
       margin: 0;
       padding: 0;
+   }
+
+   header .logo{
+      margin-left: 5%;
    }
    nav{
       visibility: hidden;
@@ -589,6 +602,7 @@ color: white;
    .main-header button{
       width: 200px;
       padding: 20px;
+      margin-top: 20px;
    }
    
    h1{

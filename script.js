@@ -1,4 +1,5 @@
 let input = document.querySelector('.input');
+
 async function getLinkShortner(){
     
     let url = input.value;
