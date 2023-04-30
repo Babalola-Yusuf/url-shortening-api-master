@@ -12,7 +12,7 @@ async function getLinkShortner(){
     template.appendChild(shortenedResultTemplate);
 
     let fullLink = document.createElement('p');
-    fullLink.innerHTML = `https://${url}`;
+    fullLink.innerHTML = `${url}`;
     fullLink.classList.add('full-link');
     shortenedResultTemplate.appendChild(fullLink);
 
@@ -29,6 +29,17 @@ async function getLinkShortner(){
     button.setAttribute('type', 'button');
     button.innerHTML = 'copy';
     rightLink.appendChild(button);
+
+    button.addEventListener('click', ()=>{
+        copy();
+    })
+
+let copy = () => {
+    navigator.clipboard.writeText(jsonShortlink);
+    button.innerHTML = 'copied!'
+    button.style.backgroundColor = 'hsl(260, 8%, 14%)';
+    button.style.borderColor = 'hsl(260, 8%, 14%)';
+}
 };
 
 
@@ -36,6 +47,8 @@ let shortenIt = document.querySelector('.shorten-it');
 shortenIt.addEventListener("click", () => {
     getLinkShortner();
 })
+
+
 
 let bars = document.querySelector('.bars');
 let nav = document.querySelector('nav');
@@ -51,12 +64,3 @@ showNav = ( ) =>{
 }
     
 const template = document.getElementById("shortened-result");
-
-if("content" in document.createElement("template")) {
-    function showForm() {
-        // Selecting the elements
-        const template = document.getElementById("shortened-result");
-    }
-} else {
-    alert("Your browser does not support template element!");
-}
