@@ -3,9 +3,23 @@ let input = document.querySelector('.input');
 async function getLinkShortner(){
     
     let url = input.value;
-    const res = await fetch(`https://api.shrtco.de/v2/shorten?url=${url}`);
+    const inputBody = '{"url": "' + url + '","expiry": "5m"}';
+    const headers = {
+    'Content-Type':'application/json',
+    'Accept':'application/json',
+    'x-api-key':'sk_3a948739e65f47a6904039ba4ce825c1'
+  };
+  
+  const res = await fetch('https://api.manyapis.com/v1-create-short-url',
+  {
+    method: 'POST',
+    body: inputBody,
+    headers: headers
+  })
+
     const data = await res.json();    
-    let jsonShortlink = data.result.short_link;
+    console.log(data);
+    let jsonShortlink = data.shortUrl;
 
     
     let shortenedResultTemplate = document.createElement('div');
@@ -50,7 +64,7 @@ shortenIt.addEventListener("click", () => {
 })
 
 
-
+/* ++++++++ navigation bar for mobile ++++++++++++++*/
 let bars = document.querySelector('.bars');
 let nav = document.querySelector('nav');
 bars.addEventListener('click', () =>{
